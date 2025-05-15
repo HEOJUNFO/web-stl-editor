@@ -1,9 +1,9 @@
 // Three.js를 사용한 3D 씬 설정
 let scene, camera, renderer, cube;
-let Module; // Emscripten 모듈
+// Module 변수 사용하되 전역으로 선언하지 않음
 
 function initScene() {
-    // 씬 생성
+    // 씬 생성C
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0x333333);
 
@@ -54,10 +54,12 @@ function initScene() {
 
 // WASM 모듈이 로드되면 호출
 function onModuleReady(wasmModule) {
-    Module = wasmModule;
     console.log("WASM 모듈이 로드되었습니다.");
-    console.log(Module.getStlData()); // C++ 함수 호출 테스트
-
+    try {
+        console.log(wasmModule.getStlData()); // C++ 함수 호출 테스트
+    } catch (e) {
+        console.error("WASM 함수 호출 오류:", e);
+    }
     // 이후에 WASM에서 제공하는 데이터로 3D 모델을 구성할 수 있습니다
 }
 
@@ -65,15 +67,10 @@ function onModuleReady(wasmModule) {
 window.onload = function () {
     initScene();
 
-    // WASM 모듈이 이미 로드되었다면
-    if (typeof Module !== 'undefined') {
-        onModuleReady(Module);
-    } else {
-        // 아직 로드 중이라면 콜백 설정
-        window.Module = {
-            onRuntimeInitialized: function () {
-                onModuleReady(this);
-            }
-        };
-    }
+    // WASM 모듈 로드 콜백 설정
+    window.Module = {
+        onRuntimeInitialized: function () {
+            onModuleReady(this);
+        }
+    };
 };
