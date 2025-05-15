@@ -13,10 +13,22 @@
         {
             "label": "서버 시작",
             "type": "shell",
-            "command": "cd build/public && python3 -m http.server 8080",
+            "command": "cd ${workspaceFolder}/build/public && python3 -m http.server 8080",
             "group": "none",
             "isBackground": true,
             "problemMatcher": []
+        },
+        {
+            "label": "빌드 후 서버 시작",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "빌드",
+                "서버 시작"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
         }
     ]
 }
