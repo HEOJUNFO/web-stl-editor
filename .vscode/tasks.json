@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "빌드",
+            "type": "shell",
+            "command": "source ${workspaceFolder}/emsdk/emsdk_env.sh && mkdir -p build && cd build && emcmake cmake .. && emmake make",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "서버 시작",
+            "type": "shell",
+            "command": "cd build/public && python3 -m http.server 8080",
+            "group": "none",
+            "isBackground": true,
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+# 빌드 디렉토리
+/build/
+/emsdk/
+
+# macOS 시스템 파일
+.DS_Store
+
+# IDE 설정 (일부만 유지)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# C++ 관련
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.wasm
+*.js.map

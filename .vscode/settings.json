@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "*.cpp": "cpp",
+        "*.h": "cpp"
+    },
+    "editor.formatOnSave": true,
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "${EMSDK}/upstream/emscripten/system/include"
+    ],
+    "C_Cpp.default.compilerPath": "${EMSDK}/upstream/emscripten/em++",
+    "C_Cpp.default.intelliSenseMode": "clang-x64",
+    "C_Cpp.default.cppStandard": "c++17"
+}
